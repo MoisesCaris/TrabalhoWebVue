@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h2>Cadastro de Times de Futebol</h2>
-    <!-- Formulário para adicionar um novo time -->
     <form @submit.prevent="adicionarTime">
       <div>
         <label for="nome">Nome do Time:</label>
@@ -30,12 +29,10 @@
       <button type="submit">Cadastrar Time</button>
     </form>
 
-    <!-- Exibição de mensagem caso a lista esteja vazia -->
     <div v-if="times.length === 0" class="mensagem-vazia">
       <p>Nenhum time cadastrado.</p>
     </div>
 
-    <!-- Lista de times cadastrados -->
     <ul v-else>
       <li v-for="(time, index) in times" :key="index">
         <strong>{{ time.nome }}</strong> - {{ time.cidade }} (Fundado em: {{ time.anoFundacao }})
@@ -59,22 +56,18 @@ export default {
   },
   methods: {
     adicionarTime() {
-      // Validação simples dos campos
       if (!this.novoTime.nome || !this.novoTime.cidade || !this.novoTime.anoFundacao) {
         alert('Por favor, preencha todos os campos.');
         return;
       }
 
-      // Adiciona o time à lista de times
       this.times.push({ ...this.novoTime });
 
-      // Limpa os campos após o cadastro
       this.novoTime.nome = '';
       this.novoTime.cidade = '';
       this.novoTime.anoFundacao = '';
     },
     removerTime(index) {
-      // Remove o time da lista
       this.times.splice(index, 1);
     }
   }
